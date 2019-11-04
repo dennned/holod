@@ -41,6 +41,11 @@ class Tag implements \JsonSerializable
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tags")
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,5 +76,17 @@ class Tag implements \JsonSerializable
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

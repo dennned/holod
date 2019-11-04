@@ -11,12 +11,19 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Form\Type\DateTimePickerType;
 use App\Form\Type\TagsInputType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -56,15 +63,48 @@ class PostType extends AbstractType
                 'help' => 'help.post_content',
                 'label' => 'label.content',
             ])
+            ->add('price', MoneyType::class, [
+                'currency' => 'UAH',
+                'label' => 'label.price',
+            ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
                 'help' => 'help.post_publication',
             ])
-            ->add('tags', TagsInputType::class, [
-                'label' => 'label.tags',
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Select category',
+                'label' => 'label.category',
                 'required' => false,
             ])
+//            ->add('tags', EntityType::class, [
+//                'class' => Tag::class,
+//                'choice_label' => 'name',
+//                'label' => 'label.tags',
+//                'required' => false,
+//            ])
+//            ->add('tags', TagsInputType::class, [
+//                'label' => 'label.tags',
+//                'required' => false,
+//            ])
         ;
+
+        $builder->get('category')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+
+//                dump($form->getData());
+//                dump($form->getData()->getTags());
+
+//                $form->getParent()->add('tags',EntityType::class, [
+//                    'class' => Tag::class,
+//                    'placeholder' => 'Select category 11',
+//                    'choices' => $form->getData()->getTags(),
+//                ]);
+            }
+        );
     }
 
     /**

@@ -72,6 +72,7 @@ class AppFixtures extends Fixture
             $post = new Post();
             $post->setTitle($title);
             $post->setSlug($slug);
+            $post->setPrice(random_int(1, 512));
             $post->setSummary($summary);
             $post->setContent($content);
             $post->setPublishedAt($publishedAt);

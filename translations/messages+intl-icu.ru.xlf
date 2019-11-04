@@ -190,6 +190,10 @@
                 <source>label.title</source>
                 <target>Название</target>
             </trans-unit>
+            <trans-unit id="label.price">
+                <source>label.price</source>
+                <target>Цена</target>
+            </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
                 <target>Автор</target>
@@ -246,6 +250,10 @@
                 <source>label.tags</source>
                 <target>Теги</target>
             </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Категории</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Действия</target>
@@ -269,11 +277,11 @@
             </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
-                <target>Список записей</target>
+                <target>Список товаров</target>
             </trans-unit>
             <trans-unit id="menu.back_to_blog">
                 <source>menu.back_to_blog</source>
-                <target>Назад к блогу</target>
+                <target>Назад к магазину</target>
             </trans-unit>
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>

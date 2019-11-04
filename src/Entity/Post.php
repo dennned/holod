@@ -56,6 +56,14 @@ class Post
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     */
     private $title;
 
     /**
@@ -121,16 +129,33 @@ class Post
      */
     private $tags;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Category", cascade={"persist", "remove"})
+     * @Assert\NotBlank(message="post.blank_summary1")
+     */
+        private $category;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->price = 0;
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): void
+    {
+        $this->price = $price;
     }
 
     public function getTitle(): ?string
@@ -228,5 +253,17 @@ class Post
     public function getTags(): Collection
     {
         return $this->tags;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }
