@@ -13,6 +13,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Subcategory;
 use App\Entity\Tag;
 use App\Form\Type\DateTimePickerType;
 use App\Form\Type\TagsInputType;
@@ -95,14 +96,14 @@ class PostType extends AbstractType
             function (FormEvent $event) {
                 $form = $event->getForm();
 
-//                dump($form->getData());
-//                dump($form->getData()->getTags());
+                dump($form->getData());
+                dump($form->getData()->getSubcategory());
 
-//                $form->getParent()->add('tags',EntityType::class, [
-//                    'class' => Tag::class,
-//                    'placeholder' => 'Select category 11',
-//                    'choices' => $form->getData()->getTags(),
-//                ]);
+                $form->getParent()->add('subcategory',EntityType::class, [
+                    'class' => 'App\Entity\Subcategory',
+                    'placeholder' => 'Select category 11',
+                    'choices' => [$form->getData()->getSubcategory()],
+                ]);
             }
         );
     }

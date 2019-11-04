@@ -133,7 +133,7 @@ class Post
      * @ORM\OneToOne(targetEntity="App\Entity\Category", cascade={"persist", "remove"})
      * @Assert\NotBlank(message="post.blank_summary1")
      */
-        private $category;
+    private $category;
 
     public function __construct()
     {

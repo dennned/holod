@@ -22,6 +22,30 @@
             <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
         </a>
     {{ form_end(form) }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        console.log('TEST');
+
+        var post_categpry = jQuery('#post_category');
+        var token = jQuery("#post__token");
+
+        post_categpry.change(function(){
+            var form = jQuery(this).closest('form');
+            var data = {};
+            data[token.attr('name')] = token.val();
+            data[post_categpry.attr('name')] = post_categpry.val();
+
+            jQuery.post(form.attr('action'), data).then(function (response) {
+                jQuery("#post_subcategory").replaceWith(
+                    jQuery(response).find("#post_subcategory")
+                );
+            });
+        });
+
+        console.log(post_categpry);
+
+    </script>
 {% endblock %}
 
 {% block sidebar %}

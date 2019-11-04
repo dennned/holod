@@ -24,19 +24,9 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tag", mappedBy="category")
+     * @ORM\OneToOne(targetEntity="App\Entity\Subcategory", cascade={"persist", "remove"})
      */
-    private $tags;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Post", cascade={"persist", "remove"})
-     */
-    private $post;
-
-    public function __construct()
-    {
-        $this->tags = new ArrayCollection();
-    }
+    private $subcategory;
 
     public function getId(): ?int
     {
@@ -55,45 +45,14 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
+    public function getSubcategory(): ?Subcategory
     {
-        return $this->tags;
+        return $this->subcategory;
     }
 
-    public function addTag(Tag $tag): self
+    public function setSubcategory(?Subcategory $subcategory): self
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-            // set the owning side to null (unless already changed)
-            if ($tag->getCategory() === $this) {
-                $tag->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Post $post): self
-    {
-        $this->post = $post;
+        $this->subcategory = $subcategory;
 
         return $this;
     }
