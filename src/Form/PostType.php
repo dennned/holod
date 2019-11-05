@@ -72,12 +72,20 @@ class PostType extends AbstractType
                 'label' => 'label.published_at',
                 'help' => 'help.post_publication',
             ])
+//            ->add('subcategory', EntityType::class, [
+//                'class' => Subcategory::class,
+//                'choice_label' => 'name',
+//                'placeholder' => 'Select subcategory',
+//                'label' => 'label.category',
+//                'required' => false,
+//            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'placeholder' => 'Select category',
                 'label' => 'label.category',
                 'required' => false,
+                'mapped' => false,
             ])
 //            ->add('tags', EntityType::class, [
 //                'class' => Tag::class,
@@ -96,13 +104,13 @@ class PostType extends AbstractType
             function (FormEvent $event) {
                 $form = $event->getForm();
 
-                dump($form->getData());
-                dump($form->getData()->getSubcategory());
+//                dump($form->getData());
+//                dump($form->getData()->getSubcategory());
 
                 $form->getParent()->add('subcategory',EntityType::class, [
-                    'class' => 'App\Entity\Subcategory',
-                    'placeholder' => 'Select category 11',
-                    'choices' => [$form->getData()->getSubcategory()],
+                    'class' => Subcategory::class,
+                    'placeholder' => 'Select sub category 11',
+                    'choices' => $form->getData()->getSubcategories(),
                 ]);
             }
         );

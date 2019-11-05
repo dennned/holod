@@ -130,10 +130,10 @@ class Post
     private $tags;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Category", cascade={"persist", "remove"})
-     * @Assert\NotBlank(message="post.blank_summary1")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Subcategory", inversedBy="posts")
+     * @Assert\NotBlank()
      */
-    private $category;
+    private $subcategory;
 
     public function __construct()
     {
@@ -255,14 +255,14 @@ class Post
         return $this->tags;
     }
 
-    public function getCategory(): ?Category
+    public function getSubcategory(): ?Subcategory
     {
-        return $this->category;
+        return $this->subcategory;
     }
 
-    public function setCategory(?Category $category): self
+    public function setSubcategory(?Subcategory $subcategory): self
     {
-        $this->category = $category;
+        $this->subcategory = $subcategory;
 
         return $this;
     }
