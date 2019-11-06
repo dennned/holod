@@ -34,11 +34,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         var post_category = jQuery('#post_category');
+        var htmlSubCat = '<option value="" selected="selected">Select SUB - category</option>';
+        var path = 'subcat/'+post_category.val();
 
-        post_category.change(function(){
-            var path = 'subcat/'+ post_category.val();
-            var htmlSubCat = '<option value="" selected="selected">Select SUB - category</option>';
+        // load if category exists
+        jQuery(document).ready(function() {
+            if(post_category.val().length != 0) {
+                getSubCategories(path, htmlSubCat);
+            }
+        });
 
+        post_category.on('change',function(){
+            var path = 'subcat/'+post_category.val();
+            getSubCategories(path, htmlSubCat);
+        });
+
+        function getSubCategories(path, htmlSubCat) {
             jQuery.ajax(path).then(function (response) {
                 if(response.length != 0) {
                     response.forEach( function( item ) {
@@ -47,7 +58,7 @@
                 }
                 jQuery("#post_subcategory").html(htmlSubCat);
             });
-        });
+        }
 
 
     </script>

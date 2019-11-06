@@ -100,22 +100,19 @@ class PostType extends AbstractType
 //            ])
         ;
 
-        $builder->get('category')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-
-//                dump($form->getData());
-//                dump($form->getData()->getSubcategories());
-//                die('rrrr');
-
-                $form->getParent()->add('subcategory',EntityType::class, [
-                    'class' => Subcategory::class,
-                    'placeholder' => 'Select sub category 11',
-                    'choices' => $form->getData()->getSubcategories(),
-                ]);
-            }
-        );
+//        $builder->get('category')->addEventListener(
+//            FormEvents::POST_SUBMIT,
+//            function (FormEvent $event) {
+//                $form = $event->getForm();
+//
+//
+//                $form->getParent()->add('subcategory',EntityType::class, [
+//                    'class' => Subcategory::class,
+//                    'placeholder' => 'Select sub category 11',
+//                    'choices' => $form->getData()->getSubcategories(),
+//                ]);
+//            }
+//        );
     }
 
     /**
