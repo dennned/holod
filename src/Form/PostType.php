@@ -71,6 +71,7 @@ class PostType extends AbstractType
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
                 'help' => 'help.post_publication',
+                'required' => false,
             ])
 //            ->add('subcategory', EntityType::class, [
 //                'class' => Subcategory::class,
@@ -84,7 +85,7 @@ class PostType extends AbstractType
                 'choice_label' => 'name',
                 'placeholder' => 'Select category',
                 'label' => 'label.category',
-                'required' => false,
+                'required' => true,
                 'mapped' => false,
             ])
 //            ->add('tags', EntityType::class, [
@@ -105,7 +106,8 @@ class PostType extends AbstractType
                 $form = $event->getForm();
 
 //                dump($form->getData());
-//                dump($form->getData()->getSubcategory());
+//                dump($form->getData()->getSubcategories());
+//                die('rrrr');
 
                 $form->getParent()->add('subcategory',EntityType::class, [
                     'class' => Subcategory::class,
