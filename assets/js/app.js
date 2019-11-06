@@ -13,5 +13,3 @@ import './highlight.js';
 
 // Creates links to the Symfony documentation
 import './doclinks.js';
-
-const $ = require('jquery');

@@ -2,7 +2,17 @@
 
 {% block body_id 'admin_post_new' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+{% endblock %}
+
 {% block main %}
+
     <h1>{{ 'title.post_new'|trans }}</h1>
 
     {{ form_start(form) }}
@@ -11,17 +21,7 @@
         {{ form_row(form.content) }}
         {{ form_row(form.price) }}
         {{ form_row(form.category) }}
-        {{ form_row(form.publishedAt) }}
         {{ form_row(form.subcategory) }}
-
-
-{#        <div class="form-group">#}
-{#            <label class="control-label required" for="post_category">SUB Категории</label>#}
-{#            <select id="post_subcategory" name="post[subcategory]" required="required" class="form-control">#}
-{#                <option value="" selected="selected">Select sub category 11</option>#}
-{#            </select>#}
-{#        </div>#}
-
 
         <button type="submit" class="btn btn-primary">
             <i class="fa fa-save" aria-hidden="true"></i> {{ 'label.create_post'|trans }}
@@ -32,15 +32,9 @@
         </a>
     {{ form_end(form) }}
 
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
     <script>
-
-
-        console.log($);
-
-
         var post_category = jQuery('#post_category');
-        var htmlSubCat = '<option value="">Select SUB - category</option>';
+        var htmlSubCat = '<option value="">{{ 'label.select.subcategory'|trans }}</option>';
         var path = 'subcat/'+post_category.val();
 
         // load if category exists
@@ -57,6 +51,11 @@
             }
         });
 
+        /**
+         * call ajax get subcategories
+         * @param path
+         * @param htmlSubCat
+         */
         function getSubCategories(path, htmlSubCat) {
             jQuery.ajax(path).then(function (response) {
                 if(response.length != 0) {
@@ -72,11 +71,7 @@
 
 {% block sidebar %}
     {{ parent() }}
-
     {{ show_source_code(_self) }}
 {% endblock %}
 
-{#{% block javascripts %}#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
-{#    {{ encore_entry_script_tags('jquery') }}#}
-{#{% endblock %}#}
+

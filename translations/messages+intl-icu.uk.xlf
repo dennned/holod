@@ -216,8 +216,20 @@
             </trans-unit>
             <trans-unit id="label.category">
                 <source>label.category</source>
+                <target>Розділи</target>
+            </trans-unit>
+            <trans-unit id="label.select.category">
+                <source>label.select.category</source>
+                <target>Вибрати розділ</target>
+             </trans-unit>
+            <trans-unit id="label.subcategory">
+                <source>label.subcategory</source>
                 <target>Категоріі</target>
             </trans-unit>
+            <trans-unit id="label.select.subcategory">
+                <source>label.select.subcategory</source>
+                <target>Вибрати категорію</target>
+             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Дії</target>

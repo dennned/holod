@@ -68,15 +68,10 @@ class PostType extends AbstractType
                 'currency' => 'UAH',
                 'label' => 'label.price',
             ])
-            ->add('publishedAt', DateTimePickerType::class, [
-                'label' => 'label.published_at',
-                'help' => 'help.post_publication',
-                'required' => false,
-            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'placeholder' => 'Select category',
+                'placeholder' => 'label.select.category',
                 'label' => 'label.category',
                 'required' => true,
                 'mapped' => false,
@@ -84,20 +79,10 @@ class PostType extends AbstractType
             ->add('subcategory', EntityType::class, [
                 'class' => Subcategory::class,
                 'choice_label' => 'name',
-                'placeholder' => 'Select subcategory',
-                'label' => 'SUB label.category',
-                'required' => false,
+                'placeholder' => 'label.select.subcategory',
+                'label' => 'label.subcategory',
+                'required' => true,
             ])
-//            ->add('tags', EntityType::class, [
-//                'class' => Tag::class,
-//                'choice_label' => 'name',
-//                'label' => 'label.tags',
-//                'required' => false,
-//            ])
-//            ->add('tags', TagsInputType::class, [
-//                'label' => 'label.tags',
-//                'required' => false,
-//            ])
         ;
 
 //        $builder->get('category')->addEventListener(

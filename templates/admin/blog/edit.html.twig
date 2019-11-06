@@ -2,6 +2,15 @@
 
 {% block body_id 'admin_post_edit' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+{% endblock %}
+
 {% block main %}
     <h1>{{ 'title.edit_post'|trans({'%id%': post.id}) }}</h1>
 
@@ -10,6 +19,43 @@
         button_label: 'action.save'|trans,
         include_back_to_home_link: true,
     }, with_context = false) }}
+
+    <script>
+        var post_category = jQuery('#post_category');
+        var htmlSubCat = '<option value="">{{ 'label.select.subcategory'|trans }}</option>';
+        var path = 'subcat/'+post_category.val();
+
+        // load if category exists
+        jQuery(document).ready(function() {
+            if(post_category.val().length != 0) {
+                getSubCategories(path, htmlSubCat);
+            }
+        });
+
+        post_category.on('change',function(){
+            var path = 'subcat/'+post_category.val();
+            if(post_category.val().length != 0) {
+                getSubCategories(path, htmlSubCat);
+            }
+        });
+
+        /**
+         * call ajax get subcategories
+         * @param path
+         * @param htmlSubCat
+         */
+        function getSubCategories(path, htmlSubCat) {
+            jQuery.ajax(path).then(function (response) {
+                if(response.length != 0) {
+                    response.forEach( function( item ) {
+                        htmlSubCat += '<option value="'+item.id+'">'+item.name+'</option>';
+                    });
+                }
+                jQuery("#post_subcategory").html(htmlSubCat);
+            });
+        }
+    </script>
+
 {% endblock %}
 
 {% block sidebar %}
