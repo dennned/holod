@@ -12,14 +12,15 @@
         {{ form_row(form.price) }}
         {{ form_row(form.category) }}
         {{ form_row(form.publishedAt) }}
+        {{ form_row(form.subcategory) }}
 
 
-        <div class="form-group">
-            <label class="control-label required" for="post_category">SUB Категории</label>
-            <select id="post_subcategory" name="post[subcategory]" required="required" class="form-control">
-                <option value="" selected="selected">Select sub category 11</option>
-            </select>
-        </div>
+{#        <div class="form-group">#}
+{#            <label class="control-label required" for="post_category">SUB Категории</label>#}
+{#            <select id="post_subcategory" name="post[subcategory]" required="required" class="form-control">#}
+{#                <option value="" selected="selected">Select sub category 11</option>#}
+{#            </select>#}
+{#        </div>#}
 
 
         <button type="submit" class="btn btn-primary">
@@ -31,10 +32,15 @@
         </a>
     {{ form_end(form) }}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
     <script>
+
+
+        console.log($);
+
+
         var post_category = jQuery('#post_category');
-        var htmlSubCat = '<option value="" selected="selected">Select SUB - category</option>';
+        var htmlSubCat = '<option value="">Select SUB - category</option>';
         var path = 'subcat/'+post_category.val();
 
         // load if category exists
@@ -46,7 +52,9 @@
 
         post_category.on('change',function(){
             var path = 'subcat/'+post_category.val();
-            getSubCategories(path, htmlSubCat);
+            if(post_category.val().length != 0) {
+                getSubCategories(path, htmlSubCat);
+            }
         });
 
         function getSubCategories(path, htmlSubCat) {
@@ -59,8 +67,6 @@
                 jQuery("#post_subcategory").html(htmlSubCat);
             });
         }
-
-
     </script>
 {% endblock %}
 
@@ -69,3 +75,8 @@
 
     {{ show_source_code(_self) }}
 {% endblock %}
+
+{#{% block javascripts %}#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+{#    {{ encore_entry_script_tags('jquery') }}#}
+{#{% endblock %}#}

@@ -73,13 +73,6 @@ class PostType extends AbstractType
                 'help' => 'help.post_publication',
                 'required' => false,
             ])
-//            ->add('subcategory', EntityType::class, [
-//                'class' => Subcategory::class,
-//                'choice_label' => 'name',
-//                'placeholder' => 'Select subcategory',
-//                'label' => 'label.category',
-//                'required' => false,
-//            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
@@ -87,6 +80,13 @@ class PostType extends AbstractType
                 'label' => 'label.category',
                 'required' => true,
                 'mapped' => false,
+            ])
+            ->add('subcategory', EntityType::class, [
+                'class' => Subcategory::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Select subcategory',
+                'label' => 'SUB label.category',
+                'required' => false,
             ])
 //            ->add('tags', EntityType::class, [
 //                'class' => Tag::class,
