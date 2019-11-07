@@ -19,6 +19,9 @@ use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,6 +91,33 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug(Slugger::slugify($post->getTitle()));
 
+            /** @var UploadedFile $image */
+            $image = $form['image']->getData();
+
+            $newFilename = '';
+            if($image){
+                $date = new \DateTime();
+                $newFilename = $date->format('Y-m-d').'-'.md5(uniqid()).'.'.$image->guessExtension();
+            }
+
+            try {
+                $image->move(
+                    $this->getParameter('image_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                die($e->getMessage());
+            }
+
+            $post->setImageName($newFilename);
+
+//            dump($post);
+//            dump($image);
+//            dump($newFilename);
+//            die('test');
+
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
@@ -138,8 +168,19 @@ class BlogController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
+        dump($post);
+
+        $post->setImageName(
+            new File($this->getParameter('image_directory').'/'.$post->getImageName())
+        );
+
+        dump($post);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug(Slugger::slugify($post->getTitle()));
+
+
+
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
@@ -178,4 +219,5 @@ class BlogController extends AbstractController
 
         return $this->redirectToRoute('admin_post_index');
     }
+
 }

@@ -10,6 +10,10 @@
                 <source>post.blank_content</source>
                 <target>Ваша запись должна содержать хоть какое-то содержание!</target>
             </trans-unit>
+            <trans-unit id="post.format_image">
+                <source>post.format_image</source>
+                <target>Разрешен только формат JPEG!</target>
+            </trans-unit>
             <trans-unit id="post.too_short_content">
                 <source>post.too_short_content</source>
                 <target>Содержание записи слишком короткое (минимум { limit } символов).</target>

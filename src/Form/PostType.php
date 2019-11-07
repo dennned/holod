@@ -14,12 +14,8 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\Subcategory;
-use App\Entity\Tag;
-use App\Form\Type\DateTimePickerType;
-use App\Form\Type\TagsInputType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -27,6 +23,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Defines the form used to create and manipulate blog posts.
@@ -83,6 +80,20 @@ class PostType extends AbstractType
                 'placeholder' => 'label.select.subcategory',
                 'label' => 'label.subcategory',
                 'required' => true,
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Upload image',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'post.format_image',
+                    ])
+                ],
             ])
         ;
 

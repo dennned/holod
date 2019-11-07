@@ -10,6 +10,10 @@
                 <source>post.blank_content</source>
                 <target>Ваш запис повинен містити хоч якийсь зміст!</target>
             </trans-unit>
+            <trans-unit id="post.format_image">
+                <source>post.format_image</source>
+                <target>Tільки формат JPEG!</target>
+            </trans-unit>
             <trans-unit id="post.too_short_content">
                 <source>post.too_short_content</source>
                 <target>Зміст запису занадто короткий (мінімум { limit } символів).</target>

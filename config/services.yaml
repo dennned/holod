@@ -5,6 +5,7 @@ parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
     app_locales: ru|uk
     app.notifications.email_sender: anonymous@example.com
+    image_directory: '%kernel.project_dir%/public/uploads/images'
 
 services:
     # default configuration for services in *this* file
