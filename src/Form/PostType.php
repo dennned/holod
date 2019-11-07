@@ -20,6 +20,7 @@ use App\Form\Type\TagsInputType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -74,7 +75,7 @@ class PostType extends AbstractType
                 'placeholder' => 'label.select.category',
                 'label' => 'label.category',
                 'required' => true,
-                'mapped' => false,
+//                'mapped' => false,
             ])
             ->add('subcategory', EntityType::class, [
                 'class' => Subcategory::class,

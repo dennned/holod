@@ -25,13 +25,6 @@
         var htmlSubCat = '<option value="">{{ 'label.select.subcategory'|trans }}</option>';
         var path = 'subcat/'+post_category.val();
 
-        // load if category exists
-        jQuery(document).ready(function() {
-            if(post_category.val().length != 0) {
-                getSubCategories(path, htmlSubCat);
-            }
-        });
-
         post_category.on('change',function(){
             var path = 'subcat/'+post_category.val();
             if(post_category.val().length != 0) {

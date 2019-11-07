@@ -105,9 +105,6 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('admin_post_index');
         }
 
-//        dump($form->createView());
-//        die;
-
         return $this->render('admin/blog/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
@@ -140,10 +137,6 @@ class BlogController extends AbstractController
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
-        if($post->getSubcategory()){
-
-        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug(Slugger::slugify($post->getTitle()));

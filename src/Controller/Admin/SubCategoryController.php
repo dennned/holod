@@ -33,6 +33,7 @@ class SubCategoryController extends AbstractController
 
     /**
      * @Route("admin/post/subcat/{id}", name="subcat_show", methods={"GET"})
+     * @Route("admin/post/{id_category}/subcat/{id}", name="subcat_show_idcat", methods={"GET"})
      *
      * @param int $id
      * @return JsonResponse

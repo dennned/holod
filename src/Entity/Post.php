@@ -135,6 +135,11 @@ class Post
      */
     private $subcategory;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subcategories")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -263,6 +268,18 @@ class Post
     public function setSubcategory(?Subcategory $subcategory): self
     {
         $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
