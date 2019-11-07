@@ -229,7 +229,11 @@
             <trans-unit id="label.select.subcategory">
                 <source>label.select.subcategory</source>
                 <target>Вибрати категорію</target>
-             </trans-unit>
+            </trans-unit>
+            <trans-unit id="label.upload.image">
+                <source>label.upload.image</source>
+                <target>Загрузити картинку</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Дії</target>

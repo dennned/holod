@@ -82,7 +82,7 @@ class PostType extends AbstractType
                 'required' => true,
             ])
             ->add('image', FileType::class, [
-                'label' => 'Upload image',
+                'label' => 'label.upload.image',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

@@ -168,17 +168,39 @@ class BlogController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
-        dump($post);
-
-        $post->setImageName(
-            new File($this->getParameter('image_directory').'/'.$post->getImageName())
-        );
-
-        dump($post);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug(Slugger::slugify($post->getTitle()));
 
+            /** @var UploadedFile $image */
+            $image = $form['image']->getData();
+
+            $newFilename = '';
+            if($image){
+                $date = new \DateTime();
+                $newFilename = $date->format('Y-m-d').'-'.md5(uniqid()).'.'.$image->guessExtension();
+            }
+
+            try {
+                $image->move(
+                    $this->getParameter('image_directory'),
+                    $newFilename
+                );
+
+                // delete old image
+                $imageOld = $this->getParameter('image_directory').'/'.$post->getImageName();
+                if (file_exists($imageOld)) {
+                    unlink($imageOld);
+                }
+
+            } catch (FileException $e) {
+                die($e->getMessage());
+            }
+
+            $post->setImageName($newFilename);
+
+//            dump($newFilename);
+//            dump($post);
+//            die('test');
 
 
             $this->getDoctrine()->getManager()->flush();

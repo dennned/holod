@@ -20,9 +20,6 @@
         include_back_to_home_link: true,
     }, with_context = false) }}
 
-    <img src="{{asset('/uploads/images/' ~ post.imageName.filename)}}" title="my image" alt="My image" />
-
-
     <script>
         var post_category = jQuery('#post_category');
         var htmlSubCat = '<option value="">{{ 'label.select.subcategory'|trans }}</option>';

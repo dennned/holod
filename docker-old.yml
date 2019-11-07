@@ -1,0 +1,45 @@
+#version: '3.7'
+#services:
+#  nginx:
+#    build:
+#      context: .
+#      dockerfile: docker/Nginx.Dockerfile
+#    ports:
+#      - "8098:80"
+#    container_name: nginx
+#    restart: on-failure
+#    volumes:
+#      -  ./:/var/www/holod-shop
+#    links:
+#      - phpfpm
+#  phpfpm:
+#    build:
+#      context: .
+#      dockerfile: docker/Fpm.Dockerfile
+#    ports:
+#      - "9000:9000"
+#    volumes:
+#      -  ./:/var/www/holod-shop
+#    container_name: phpfpm
+#    links:
+#      - dbmysql
+#  dbmysql:
+#    image: mysql:5.7
+#    restart: on-failure
+#    ports:
+#      - "33061:3306"
+#    container_name: dbmysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: project
+#  phpmyadmin:
+#    depends_on:
+#      - dbmysql
+#    image: phpmyadmin/phpmyadmin
+#    container_name: phpmyadmin
+#    restart: always
+#    ports:
+#      - 8082:80
+#    environment:
+#      PMA_HOST: dbmysql
+#      MYSQL_ROOT_PASSWORD: root
