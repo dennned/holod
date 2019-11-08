@@ -15,6 +15,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Security\PostVoter;
+use App\Service\FileUploader;
 use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -73,7 +74,7 @@ class BlogController extends AbstractController
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $post = new Post();
         $post->setAuthor($this->getUser());
@@ -94,29 +95,10 @@ class BlogController extends AbstractController
             /** @var UploadedFile $image */
             $image = $form['image']->getData();
 
-            $newFilename = '';
             if($image){
-                $date = new \DateTime();
-                $newFilename = $date->format('Y-m-d').'-'.md5(uniqid()).'.'.$image->guessExtension();
+                $newFilename = $fileUploader->upload($image);
+                $post->setImageName($newFilename);
             }
-
-            try {
-                $image->move(
-                    $this->getParameter('image_directory'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                die($e->getMessage());
-            }
-
-            $post->setImageName($newFilename);
-
-//            dump($post);
-//            dump($image);
-//            dump($newFilename);
-//            die('test');
-
-
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
@@ -162,8 +144,14 @@ class BlogController extends AbstractController
      *
      * @Route("/{id<\d+>}/edit",methods={"GET", "POST"}, name="admin_post_edit")
      * @IsGranted("edit", subject="post", message="Posts can only be edited by their authors.")
+     *
+     * @param Request $request
+     * @param Post $post
+     * @param FileUploader $fileUploader
+     * @return Response
+     * @throws \Exception
      */
-    public function edit(Request $request, Post $post): Response
+    public function edit(Request $request, Post $post, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -175,24 +163,10 @@ class BlogController extends AbstractController
             $image = $form['image']->getData();
 
             if($image) {
-                $date = new \DateTime();
-                $newFilename = $date->format('Y-m-d') . '-' . md5(uniqid()) . '.' . $image->guessExtension();
-
-                try {
-                    $image->move(
-                        $this->getParameter('image_directory'),
-                        $newFilename
-                    );
-
-                    // delete old image
-                    $imageOld = $this->getParameter('image_directory') . '/' . $post->getImageName();
-                    if (file_exists($imageOld)) {
-                        unlink($imageOld);
-                    }
-
-                } catch (FileException $e) {
-                    die($e->getMessage());
-                }
+                //upload image
+                $newFilename = $fileUploader->upload($image);
+                // delete old image
+                $fileUploader->delete($post->getImageName());
 
                 $post->setImageName($newFilename);
             }
@@ -215,8 +189,13 @@ class BlogController extends AbstractController
      *
      * @Route("/{id}/delete", methods={"POST"}, name="admin_post_delete")
      * @IsGranted("delete", subject="post")
+     *
+     * @param Request $request
+     * @param Post $post
+     * @param FileUploader $fileUploader
+     * @return Response
      */
-    public function delete(Request $request, Post $post): Response
+    public function delete(Request $request, Post $post, FileUploader $fileUploader): Response
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
@@ -226,6 +205,9 @@ class BlogController extends AbstractController
         // by Doctrine, except for SQLite (the database used in this application)
         // because foreign key support is not enabled by default in SQLite
         $post->getTags()->clear();
+
+        // delete image
+        $fileUploader->delete($post->getImageName());
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
