@@ -234,6 +234,10 @@
                 <source>label.upload.image</source>
                 <target>Загрузити картинку</target>
             </trans-unit>
+            <trans-unit id="label.image">
+                <source>label.image</source>
+                <target>Картинка</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Дії</target>

@@ -265,11 +265,15 @@
             <trans-unit id="label.select.subcategory">
                 <source>label.select.subcategory</source>
                 <target>Выбрать категорию</target>
-             </trans-unit>
-             <trans-unit id="label.upload.image">
+            </trans-unit>
+            <trans-unit id="label.upload.image">
                 <source>label.upload.image</source>
                 <target>Загрузить картинку</target>
-             </trans-unit>
+            </trans-unit>
+            <trans-unit id="label.image">
+                <source>label.image</source>
+                <target>Картинка</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Действия</target>
