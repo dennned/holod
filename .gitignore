@@ -5,6 +5,8 @@
 /.env.local
 /.env.*.local
 /public/bundles/
+/public/build
+/public/uploads/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -28,3 +30,6 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+/.idea/
+/src/Migrations
