@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/", methods={"GET"}, name="admin_category_index")
+     * @Route("/", methods={"GET"}, name="admin_category_new")
      * @param CategoryRepository $categoryRepository
      * @return Response
      */

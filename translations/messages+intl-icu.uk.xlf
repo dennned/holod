@@ -78,7 +78,7 @@
             </trans-unit>
             <trans-unit id="title.post_list">
                 <source>title.post_list</source>
-                <target>Список записів</target>
+                <target>Список товарів</target>
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
@@ -139,11 +139,15 @@
             </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
-                <target>Створити новий запис</target>
+                <target>Створити товар</target>
+            </trans-unit>
+            <trans-unit id="action.create_category">
+                <source>action.create_category</source>
+                <target>Створити розділ</target>
             </trans-unit>
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
-                <target>Створити запис</target>
+                <target>Зберегти</target>
             </trans-unit>
             <trans-unit id="label.save_and_create_new">
                 <source>label.save_and_create_new</source>
@@ -208,7 +212,7 @@
             </trans-unit>
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
-                <target>Опубліковано</target>
+                <target>Дата</target>
             </trans-unit>
             <trans-unit id="label.tags">
                 <source>label.tags</source>
@@ -236,7 +240,7 @@
             </trans-unit>
             <trans-unit id="label.image">
                 <source>label.image</source>
-                <target>Картинка</target>
+                <target>Фото</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
