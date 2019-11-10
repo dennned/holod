@@ -24,9 +24,18 @@ class Category
     private $name;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Subcategory", mappedBy="category")
      */
     private $subcategories;
+
 
     public function __construct()
     {
@@ -79,6 +88,16 @@ class Category
         }
 
         return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(User $author): void
+    {
+        $this->author = $author;
     }
 
     public function __toString(){

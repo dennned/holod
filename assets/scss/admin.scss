@@ -32,11 +32,15 @@ body#admin_post_index img.image-list {
 }
 
 @media screen and (max-width: 600px) {
-  body#admin_post_index span.hide-mobile {
+  body#admin_post_index span.hide-mobile,
+  body#admin_category_index span.hide-mobile{
     display: none;
   }
   body#admin_post_index .btn {
     border-width: 0px;
+  }
+  body#admin_post_new #post_saveAndCreateNew {
+    margin: 10px 0 6px 0px;
   }
 }
 
