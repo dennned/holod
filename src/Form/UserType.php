@@ -50,6 +50,10 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
             ])
+            ->add('contactInfo', null, [
+                'label' => 'label.contact',
+                'attr' => ['rows' => 10],
+            ])
         ;
     }
 

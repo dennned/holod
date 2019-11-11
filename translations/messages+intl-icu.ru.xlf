@@ -226,6 +226,10 @@
                 <source>label.price</source>
                 <target>Цена</target>
             </trans-unit>
+            <trans-unit id="label.contact">
+                <source>label.contact</source>
+                <target>Контакт инфо</target>
+            </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
                 <target>Автор</target>
@@ -366,6 +370,10 @@
             <trans-unit id="menu.search">
                 <source>menu.search</source>
                 <target>Поиск</target>
+            </trans-unit>
+            <trans-unit id="menu.contact">
+                <source>menu.contact</source>
+                <target>Контакт инфо</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">

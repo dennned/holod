@@ -134,6 +134,7 @@ class BlogController extends AbstractController
 
         return $this->render('admin/blog/show.html.twig', [
             'post' => $post,
+            'user' => $this->getUser(),
         ]);
     }
 

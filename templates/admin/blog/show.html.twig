@@ -5,17 +5,23 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
-    <p class="post-metadata">
-        <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
-        <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
-        <span class="metadata"><i class="fa"></i>{{ 'label.price'|trans }} : {{ post.price }}</span>
-    </p>
-
     <div class="well">
-        <p class="m-b-0"><strong>{{ 'label.summary'|trans }}</strong>: {{ post.summary }}</p>
+        <p class="m-b-0">{{ post.summary }}</p>
     </div>
 
+    {% if post.imageName %}
+        <div class="form-group size-image">
+            <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="post.title" alt="post.title" />
+        </div>
+    {% endif %}
+
     {{ post.content|md2html }}
+
+    <div class="form-group">
+        <p class="m-b-0"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
+    </div>
+
+    {{ dump(user) }}
 
     {{ include('blog/_post_tags.html.twig') }}
 {% endblock %}
@@ -31,7 +37,9 @@
         {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
     </div>
 
-    {{ parent() }}
-
-    {{ show_source_code(_self) }}
+    <div class="section actions">
+        <a href="{{ path('admin_post_index') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> {{ 'action.back'|trans }}
+        </a>
+    </div>
 {% endblock %}

@@ -210,6 +210,10 @@
                 <source>label.price</source>
                 <target>Ціна</target>
             </trans-unit>
+            <trans-unit id="label.contact">
+                <source>label.contact</source>
+                <target>Контакт інфо</target>
+            </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
                 <target>Автор</target>
@@ -324,9 +328,13 @@
                 <target>RSS Записів Блогу</target>
             </trans-unit>
             <trans-unit id="menu.search">
-                <source>menu.search</source>
-                <target>Пошук</target>
-            </trans-unit>
+                 <source>menu.search</source>
+                 <target>Пошук</target>
+             </trans-unit>
+             <trans-unit id="menu.contact">
+                 <source>menu.contact</source>
+                 <target>Контакт інфо</target>
+             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>

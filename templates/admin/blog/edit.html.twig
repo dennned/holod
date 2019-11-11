@@ -92,4 +92,11 @@
     <div class="section actions">
         {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
     </div>
+
+    <div class="section actions">
+        <a href="{{ path('admin_post_index') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> {{ 'action.back'|trans }}
+        </a>
+    </div>
+
 {% endblock %}
