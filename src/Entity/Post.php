@@ -131,12 +131,14 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Subcategory", inversedBy="posts")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Assert\NotBlank()
      */
     private $subcategory;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subcategories")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 

@@ -33,9 +33,9 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Subcategory", mappedBy="category")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $subcategories;
-
 
     public function __construct()
     {

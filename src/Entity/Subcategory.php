@@ -30,6 +30,7 @@ class Subcategory
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subcategories")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 

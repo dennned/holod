@@ -46,6 +46,7 @@ class FileUploader
     public function delete(string $imageName = '')
     {
         $image = $this->getTargetDirectory() . '/' . $imageName;
+
         if (file_exists($image)) {
             unlink($image);
         }

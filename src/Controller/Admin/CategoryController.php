@@ -76,7 +76,7 @@ class CategoryController extends AbstractController
      * Displays a form to edit an existing category entity.
      *
      * @Route("/{id<\d+>}/edit",methods={"GET", "POST"}, name="admin_category_edit")
-     * @IsGranted("edit", subject="category", message="Category can only be edited by their authors.")
+     * IsGranted("edit", subject="category", message="Category can only be edited by their authors.")
      *
      * @param Request $request
      * @param Category $category
@@ -107,7 +107,7 @@ class CategoryController extends AbstractController
      * Deletes a category entity.
      *
      * @Route("/{id}/delete", methods={"POST"}, name="admin_category_delete")
-     * @IsGranted("delete", subject="category", message="Category can not be delete")
+     * IsGranted("delete", subject="category", message="Category can not be delete")
      *
      * @param Request $request
      * @param Category $category
