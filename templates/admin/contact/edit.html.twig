@@ -1,0 +1,38 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body_id 'admin_contact_edit' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block main %}
+    <h1>{{ 'label.contact'|trans }}</h1>
+
+    {% if show_confirmation|default(false) %}
+        {% set attr = {'data-confirmation': 'true'} %}
+        {{ include('blog/_delete_post_confirmation.html.twig') }}
+    {% endif %}
+
+    {{ form_start(form, {attr: attr|default({})}) }}
+    {{ form_row(form.contactInfo) }}
+
+    <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
+        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+    </button>
+
+    {% if include_back_to_home_link|default(false) %}
+        <a href="{{ path('admin_category_index') }}" class="btn btn-link">
+            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
+        </a>
+    {% endif %}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="section actions">
+        <a href="{{ path('admin_post_index') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> {{ 'action.back'|trans }}
+        </a>
+    </div>
+{% endblock %}
