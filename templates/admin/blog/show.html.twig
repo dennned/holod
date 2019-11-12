@@ -21,7 +21,12 @@
         <p class="m-b-0"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
     </div>
 
-    {{ dump(user) }}
+    {% if contactInfo is not empty %}
+        <div class="well">
+            <h3>{{ 'label.contact'|trans }}</h3>
+            {{ contactInfo.contactInfo|nl2br }}
+        </div>
+    {% endif %}
 
     {{ include('blog/_post_tags.html.twig') }}
 {% endblock %}

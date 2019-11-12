@@ -2,15 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Category;
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Form\PostType;
 use App\Repository\ContactRepository;
-use App\Repository\SubcategoryRepository;
-use App\Utils\Slugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ContactController extends AbstractController
 {
-
     /**
      * @var ContactRepository
      */
@@ -45,7 +39,6 @@ class ContactController extends AbstractController
      */
     public function edit(Request $request): Response
     {
-
         $contact = $this->contactRepository->findAll();
 
         if(empty($contact)) {
@@ -76,5 +69,7 @@ class ContactController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
+
+        return $this->redirectToRoute('admin_post_index');
     }
 }

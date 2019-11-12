@@ -11,10 +11,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
-use App\Security\PostVoter;
 use App\Service\FileUploader;
 use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -55,6 +55,9 @@ class BlogController extends AbstractController
      *
      * @Route("/", methods={"GET"}, name="admin_index")
      * @Route("/", methods={"GET"}, name="admin_post_index")
+     *
+     * @param PostRepository $posts
+     * @return Response
      */
     public function index(PostRepository $posts): Response
     {
@@ -71,6 +74,11 @@ class BlogController extends AbstractController
      * NOTE: the Method annotation is optional, but it's a recommended practice
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
+     *
+     * @param Request $request
+     * @param FileUploader $fileUploader
+     * @return Response
+     * @throws \Exception
      */
     public function new(Request $request, FileUploader $fileUploader): Response
     {
@@ -125,6 +133,9 @@ class BlogController extends AbstractController
      * Finds and displays a Post entity.
      *
      * @Route("/{id<\d+>}", methods={"GET"}, name="admin_post_show")
+     *
+     * @param Post $post
+     * @return Response
      */
     public function show(Post $post): Response
     {
@@ -132,9 +143,13 @@ class BlogController extends AbstractController
         // using an annotation: @IsGranted("show", subject="post", message="Posts can only be shown to their authors.")
         //$this->denyAccessUnlessGranted(PostVoter::SHOW, $post, 'Posts can only be shown to their authors.');
 
+        $contactRepo = $this->getDoctrine()->getRepository(Contact::class);
+        $contact = $contactRepo->findAll();
+
         return $this->render('admin/blog/show.html.twig', [
             'post' => $post,
             'user' => $this->getUser(),
+            'contactInfo' => !empty($contact) ? $contact[0] : [],
         ]);
     }
 
