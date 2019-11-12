@@ -145,7 +145,7 @@
                                 <a href="https://www.facebook.com/SensioLabs" title="SensioLabs Facebook">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://symfony.com/blog/" title="Symfony Blog">
+                                <a href="{{ path('blog_rss', app.request.query.all) }}">
                                     <i class="fa fa-rss" aria-hidden="true"></i>
                                 </a>
                             </p>

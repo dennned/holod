@@ -3,27 +3,65 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
+
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-sm-3">#}
+{#            <p>TEst 0</p>#}
+{#        </div>#}
+{#        <div class="col-sm-3">#}
+{#            <p>TEst 1</p>#}
+{#        </div>#}
+{#        <div class="col-sm-3">#}
+{#            <p>TEst 2</p>#}
+{#        </div>#}
+{#        <div class="col-sm-3">#}
+{#            <p>TEst 3</p>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+<div class="container">
+    <div class="row">
     {% for post in paginator.results %}
-        <article class="post">
+        <article class="post col-sm-3">
+            {% if post.imageName %}
+                <div class="image">
+                    <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
+                        <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                    </a>
+                </div>
+            {% else %}
+                <div class="image">
+                    <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
+                        <img src="{{asset('/non-image.jpg')}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                    </a>
+                </div>
+            {% endif %}
+
             <h2>
-                <a href="{{ path('blog_post', {slug: post.slug}) }}">
-                    {{ post.title }}
+                <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
+                    {{ post.title|slice(0, 100) ~ ' ...' }}
                 </a>
             </h2>
 
-            <p class="post-metadata">
-                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
-                <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
-                <span class="metadata"><i class="fa"></i>{{ 'label.price'|trans }} : {{ post.price }}</span>
-            </p>
+{#            <p class="post-metadata">#}
+{#                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>#}
+{#                <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>#}
+{#                <span class="metadata"><i class="fa"></i>{{ 'label.price'|trans }} : {{ post.price }}</span>#}
+{#            </p>#}
 
-            <p>{{ post.summary }}</p>
+{#            <p>{{ post.summary|slice(0, 150) ~ ' ...' }}</p>#}
 
-            {{ include('blog/_post_tags.html.twig') }}
+            <p class="well"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
+
         </article>
     {% else %}
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
+
+    </div>
+</div>
 
     {% if paginator.hasToPaginate %}
         <div class="navigation text-center">
@@ -53,8 +91,6 @@
 {% endblock %}
 
 {% block sidebar %}
-    {{ parent() }}
-
-    {{ show_source_code(_self) }}
-    {{ include('blog/_rss.html.twig') }}
+{#    {{ parent() }}#}
 {% endblock %}
+

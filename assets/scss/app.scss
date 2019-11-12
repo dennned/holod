@@ -262,6 +262,19 @@ body#login #login-users-help p .console {
 
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
+body#blog_index article .image {
+  padding: 0 0 10px 0;
+}
+body#blog_index article .image img{
+  height: 195px;
+  width: 260px;
+}
+body#blog_index article h2 {
+  font-size: 1.5em;
+}
+body#blog_index article .well {
+  text-align: center;
+}
 body#blog_index #main h1,
 body#blog_index #main p {
   margin-bottom: 0.5em
@@ -269,6 +282,7 @@ body#blog_index #main p {
 
 body#blog_index article.post {
   margin-bottom: 3em;
+  height: 360px;
 }
 
 body#blog_index .post-metadata {
