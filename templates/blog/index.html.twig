@@ -28,13 +28,13 @@
             {% if post.imageName %}
                 <div class="image">
                     <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
-                        <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                        <img src="{{asset('/uploads/images/' ~ post.imageName) | imagine_filter('my_thumb')}}" title="{{ post.title }}" alt="{{ post.title }}" />
                     </a>
                 </div>
             {% else %}
                 <div class="image">
                     <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
-                        <img src="{{asset('/non-image.jpg')}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                        <img src="{{asset('/non-image.jpg') | imagine_filter('my_thumb')}}" title="{{ post.title }}" alt="{{ post.title }}" />
                     </a>
                 </div>
             {% endif %}
