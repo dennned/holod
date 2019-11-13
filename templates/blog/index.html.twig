@@ -25,6 +25,7 @@
     <div class="row">
     {% for post in paginator.results %}
         <article class="post col-sm-3">
+
             {% if post.imageName %}
                 <div class="image">
                     <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
@@ -53,7 +54,11 @@
 
 {#            <p>{{ post.summary|slice(0, 150) ~ ' ...' }}</p>#}
 
-            <p class="well"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
+            <p class="well">
+                <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
+                    <strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong>
+                </a>
+            </p>
 
         </article>
     {% else %}

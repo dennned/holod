@@ -262,6 +262,10 @@ body#login #login-users-help p .console {
 
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
+body#blog_index .post .well a {
+  color: #2C3E50;
+}
+
 body#blog_index article .image {
   padding: 0 0 10px 0;
 }
