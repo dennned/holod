@@ -37,6 +37,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
+     * Home Page, check routes.yaml
+     *
+     * @param string $template
+     * @return Response
+     */
+    public function homePage(string $template)
+    {
+        $repository = $this->getDoctrine()->getRepository(Post::class);
+        $latestPosts = $repository->findLatest();
+
+        return $this->render($template, [
+            'paginator' => $latestPosts,
+        ]);
+    }
+
+    /**
      * @Route("/", defaults={"page": "1", "_format"="html"}, methods={"GET"}, name="blog_index")
      * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, methods={"GET"}, name="blog_rss")
      * @Route("/page/{page<[1-9]\d*>}", defaults={"_format"="html"}, methods={"GET"}, name="blog_index_paginated")

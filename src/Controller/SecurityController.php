@@ -47,8 +47,6 @@ class SecurityController extends AbstractController
         $this->saveTargetPath($request->getSession(), 'main', $this->generateUrl('admin_index'));
 
         return $this->render('security/login.html.twig', [
-            // last username entered by the user (if any)
-            'last_username' => $helper->getLastUsername(),
             // last authentication error (if any)
             'error' => $helper->getLastAuthenticationError(),
         ]);
