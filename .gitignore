@@ -34,3 +34,7 @@ yarn-error.log
 /.idea/
 /src/Migrations
 /public/build1/
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

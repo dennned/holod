@@ -376,3 +376,19 @@ body#blog_search .post-metadata {
   font-size: 16px;
   margin-bottom: 8px;
 }
+
+@media screen and (max-width: 600px) {
+  body#blog_index .body-container .row {
+    display: flex;
+    flex-direction: column;
+  }
+  body#blog_index #main {
+    order: 2;
+  }
+  body#blog_index #sidebar {
+    order: 1;
+  }
+  body#blog_index .pagination .hide-mobile {
+    display: none;
+  }
+}

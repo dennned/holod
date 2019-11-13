@@ -44,8 +44,10 @@ class BlogController extends AbstractController
      */
     public function homePage(string $template): Response
     {
+        $params = $this->checkGetParams();
+
         $repository = $this->getDoctrine()->getRepository(Post::class);
-        $latestPosts = $repository->findLatest();
+        $latestPosts = $repository->findLatest($page = 1, $params);
 
         return $this->render($template, [
             'paginator' => $latestPosts,
@@ -188,5 +190,24 @@ class BlogController extends AbstractController
         }
 
         return $this->json($results);
+    }
+
+    /**
+     * @return array
+     */
+    private function checkGetParams(): array
+    {
+        $getParams = $_GET['get'] ?? null;
+        $categoryId = $subCategoryId = null;
+
+        if(null !== $getParams){
+            $categoryId = intval($getParams['category']) ? $getParams['category'] : $categoryId;
+            $subCategoryId = intval($getParams['subcategory']) ? $getParams['subcategory'] : $subCategoryId;
+        }
+
+        return [
+            'categoryId' => $categoryId,
+            'subCategoryId' => $subCategoryId,
+        ];
     }
 }
