@@ -1,45 +1,67 @@
-<div class="section about">
+<div class="section list-categories-bloc">
     <div class="well well-lg">
 
-        <p>Filtr</p>
+        <h4>{{ 'label.subcategory'|trans }}</h4>
 
-        <form action="{{ path('homepage') }}" method="get">
-            <div class="category">
-                <label class="control-label">Category</label>
-                <select class="form-control" name="get[category]">
-                    <option value="0">Select</option>
+        {% if categories is defined %}
+        <ul class="cat-menu">
+            {% for category in categories %}
 
-                    {% for category in categories %}
+                <li>
+{#                    <i class="fa sort-down" aria-hidden="true"></i>#}
+                    <a href="{{ path('homepage',{'get[category]': category['cat'].id, 'get[subcategory]': 0}) }}" title="{{ category['cat'].name }}">{{ category['cat'].name }}</a>
+                </li>
 
-                        {% set selected = '' %}
-                        {% if categoryId == category.id %}
-                            {% set selected = 'selected' %}
-                        {% endif %}
-
-                        <option value="{{category.id}}" {{ selected }}>{{ category.name }}</option>
+                <ul class="subcat-menu">
+                    {% for subcategory in category['subcat'] %}
+                        <li>
+                            <a href="{{ path('homepage',{'get[category]': category['cat'].id, 'get[subcategory]': subcategory.id}) }}" title="{{ subcategory.name }}">{{ subcategory.name }}</a>
+                        </li>
                     {% endfor %}
-                </select>
-            </div>
+                </ul>
 
-            <div class="subcategory">
-                <label class="control-label">Sub category</label>
-                <select class="form-control" name="get[subcategory]">
-                    <option value="0">Select</option>
-                    {% for subcategory in subcategories %}
+            {% endfor %}
+        </ul>
+        {% endif %}
 
-                        {% set selected = '' %}
-                        {% if subcategoryId == subcategory.id %}
-                            {% set selected = 'selected' %}
-                        {% endif %}
 
-                        <option value="{{subcategory.id}}" {{ selected }}>{{ subcategory.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <br/>
-            <button type="submit" class="btn btn-primary">Search</button>
+{#        <form action="{{ path('homepage') }}" method="get">#}
+{#            <div class="category">#}
+{#                <label class="control-label">Category</label>#}
+{#                <select class="form-control" name="get[category]">#}
+{#                    <option value="0">Select</option>#}
 
-        </form>
+{#                    {% for category in categories %}#}
+
+{#                        {% set selected = '' %}#}
+{#                        {% if categoryId == category.id %}#}
+{#                            {% set selected = 'selected' %}#}
+{#                        {% endif %}#}
+
+{#                        <option value="{{category.id}}" {{ selected }}>{{ category.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+
+{#            <div class="subcategory">#}
+{#                <label class="control-label">Sub category</label>#}
+{#                <select class="form-control" name="get[subcategory]">#}
+{#                    <option value="0">Select</option>#}
+{#                    {% for subcategory in subcategories %}#}
+
+{#                        {% set selected = '' %}#}
+{#                        {% if subcategoryId == subcategory.id %}#}
+{#                            {% set selected = 'selected' %}#}
+{#                        {% endif %}#}
+
+{#                        <option value="{{subcategory.id}}" {{ selected }}>{{ subcategory.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+{#            <br/>#}
+{#            <button type="submit" class="btn btn-primary">Search</button>#}
+
+{#        </form>#}
     </div>
 </div>
 
