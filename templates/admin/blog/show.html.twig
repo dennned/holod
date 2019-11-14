@@ -7,7 +7,7 @@
 
     {% if post.imageName %}
         <div class="form-group size-image">
-            <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="post.title" alt="post.title" />
+            <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="{{ post.title }}" alt="{{ post.title }}" />
         </div>
     {% endif %}
 
@@ -17,7 +17,6 @@
         <p class="m-b-0"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
     </div>
 
-    {{ include('blog/_post_tags.html.twig') }}
 {% endblock %}
 
 {% block sidebar %}

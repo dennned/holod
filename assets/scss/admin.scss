@@ -27,19 +27,17 @@ body#admin_post_show .post-tags .label-default i {
 body#admin_post_edit .size-image img {
   width: 30%;
 }
-body#admin_post_show .size-image {
-  text-align: center;
-}
-body#admin_post_show .size-image img {
-  width: 70%;
-}
-body#admin_post_show .price {
-
+body#admin_post_show {
+  .size-image {
+    text-align: center;
+  }
+  .size-image img {
+    width: 70%;
+  }
 }
 body#admin_post_index img.image-list {
   width: 50px;
 }
-
 
 @media screen and (max-width: 600px) {
   body#admin_post_index span.hide-mobile,
