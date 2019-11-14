@@ -145,6 +145,28 @@
                 <source>delete_post_modal.body</source>
                 <target>Это действие не может быть отменено.</target>
             </trans-unit>
+
+            <trans-unit id="label.contact-name">
+                <source>label.contact-name</source>
+                <target>Название</target>
+            </trans-unit>
+            <trans-unit id="label.contact-phone">
+                <source>label.contact-phone</source>
+                <target>Тел</target>
+            </trans-unit>
+            <trans-unit id="label.contact-person">
+                <source>label.contact-person</source>
+                <target>Контактное лицо</target>
+            </trans-unit>
+            <trans-unit id="label.contact-adress">
+                <source>label.contact-adress</source>
+                <target>Адрес</target>
+            </trans-unit>
+            <trans-unit id="label.contact-contactInfo">
+                <source>label.contact-contactInfo</source>
+                <target>Доп информация</target>
+            </trans-unit>
+
             <trans-unit id="label.delete_post">
                 <source>label.delete_post</source>
                 <target>Удалить запись</target>
@@ -350,6 +372,10 @@
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
                 <target>Главная страница</target>
+            </trans-unit>
+            <trans-unit id="menu.about">
+                <source>menu.about</source>
+                <target>О нас</target>
             </trans-unit>
             <trans-unit id="menu.admin">
                 <source>menu.admin</source>

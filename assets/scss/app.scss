@@ -432,26 +432,36 @@ body#blog_search .post-metadata {
     padding: 0px;
   }
 }
+#sidebar .contact-bloc {
+  p {
+    margin: 0.5em 0 0;
+  }
 
-
-@media screen and (max-width: 600px) {
-  body#blog_index .body-container .row {
-    display: flex;
-    flex-direction: column;
-  }
-  body#blog_index #main {
-    order: 2;
-  }
-  body#blog_index #sidebar {
-    order: 1;
-  }
-  body#blog_index .pagination .hide-mobile {
-    display: none;
-  }
-  body#blog_index article .image img {
-    width: 95%;
-  }
-  body#blog_index article.post {
-    height: 300px;
+  h4 {
+    text-align: center;
+    padding: 0 0 10px 0;
   }
 }
+
+@media screen and (max-width: 600px) {
+    body#blog_index .body-container .row {
+      display: flex;
+      flex-direction: column;
+    }
+    body#blog_index #main {
+      order: 2;
+    }
+    body#blog_index #sidebar {
+      order: 1;
+    }
+    body#blog_index .pagination .hide-mobile {
+      display: none;
+    }
+    body#blog_index article .image img {
+      width: 95%;
+    }
+    body#blog_index article.post {
+      height: 300px;
+    }
+}
+

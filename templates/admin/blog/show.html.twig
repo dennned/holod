@@ -5,10 +5,6 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
-    <div class="well">
-        <p class="m-b-0">{{ post.summary }}</p>
-    </div>
-
     {% if post.imageName %}
         <div class="form-group size-image">
             <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="post.title" alt="post.title" />
@@ -20,13 +16,6 @@
     <div class="form-group">
         <p class="m-b-0"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
     </div>
-
-    {% if contactInfo is not empty %}
-        <div class="well">
-            <h3>{{ 'label.contact'|trans }}</h3>
-            {{ contactInfo.contactInfo|nl2br }}
-        </div>
-    {% endif %}
 
     {{ include('blog/_post_tags.html.twig') }}
 {% endblock %}

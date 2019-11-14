@@ -15,6 +15,10 @@
     {% endif %}
 
     {{ form_start(form, {attr: attr|default({})}) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.person) }}
+    {{ form_row(form.adress) }}
     {{ form_row(form.contactInfo) }}
 
     <button type="submit" class="{{ button_css|default("btn btn-primary") }}">

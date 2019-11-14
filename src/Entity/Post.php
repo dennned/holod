@@ -76,15 +76,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="post.blank_summary")
-     * @Assert\Length(max=255)
-     */
-    private $summary;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="post.blank_content")
      * @Assert\Length(min=10, minMessage="post.too_short_content")
@@ -236,16 +227,6 @@ class Post
     public function removeComment(Comment $comment): void
     {
         $this->comments->removeElement($comment);
-    }
-
-    public function getSummary(): ?string
-    {
-        return $this->summary;
-    }
-
-    public function setSummary(string $summary): void
-    {
-        $this->summary = $summary;
     }
 
     public function addTag(Tag ...$tags): void

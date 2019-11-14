@@ -137,6 +137,26 @@
                 <source>delete_post_modal.body</source>
                 <target>Ця дія не може бути скасована.</target>
             </trans-unit>
+            <trans-unit id="label.contact-name">
+                <source>label.contact-name</source>
+                <target>Назва</target>
+            </trans-unit>
+            <trans-unit id="label.contact-phone">
+                <source>label.contact-phone</source>
+                <target>Тел</target>
+            </trans-unit>
+            <trans-unit id="label.contact-person">
+                <source>label.contact-person</source>
+                <target>Контактна особа</target>
+            </trans-unit>
+            <trans-unit id="label.contact-adress">
+                <source>label.contact-adress</source>
+                <target>Адрес</target>
+            </trans-unit>
+            <trans-unit id="label.contact-contactInfo">
+                <source>label.contact-contactInfo</source>
+                <target>Доп інформація</target>
+            </trans-unit>
             <trans-unit id="label.delete_post">
                 <source>label.delete_post</source>
                 <target>Видалити запис</target>
@@ -314,6 +334,10 @@
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
                 <target>Головна сторінка</target>
+            </trans-unit>
+            <trans-unit id="menu.about">
+                <source>menu.about</source>
+                <target>Про нас</target>
             </trans-unit>
             <trans-unit id="menu.admin">
                 <source>menu.admin</source>

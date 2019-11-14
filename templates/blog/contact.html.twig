@@ -1,0 +1,32 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body_id 'blog_contact' %}
+
+{% block main %}
+
+    {% if contact is defined %}
+        <div class="section contact-bloc">
+            <div class="well well-lg">
+                <h4>{{ 'label.contact'|trans }}</h4>
+                <div class="form-group">
+                    {% if contact.name %}<p class="m-b-0"><strong>{{ 'label.contact-name'|trans }}:</strong> {{ contact.name }}</p> {% endif %}
+                    {% if contact.phone %}<p class="m-b-0"><strong>{{ 'label.contact-phone'|trans }}:</strong> <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></p>{% endif %}
+                    {% if contact.person %}<p class="m-b-0"><strong>{{ 'label.contact-person'|trans }}:</strong> {{ contact.person }}</p>{% endif %}
+                    {% if contact.adress %}<p class="m-b-0"><strong>{{ 'label.contact-adress'|trans }}:</strong> {{ contact.adress }}</p>{% endif %}
+                    {% if contact.contactInfo %}<div class="m-b-0"><p class="m-b-0"><strong>{{ 'label.contact-contactInfo'|trans }}:</strong> </p>{{ contact.contactInfo|nl2br }}</div>{% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ render_esi(controller('App\\Controller\\CategoryController::showCategories', {
+        'template': 'blog/categories.html.twig',
+        '_locale': app.request.locale
+    })) }}
+
+{% endblock %}
+

@@ -29,14 +29,6 @@
                 </a>
             </h2>
 
-{#            <p class="post-metadata">#}
-{#                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>#}
-{#                <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>#}
-{#                <span class="metadata"><i class="fa"></i>{{ 'label.price'|trans }} : {{ post.price }}</span>#}
-{#            </p>#}
-
-{#            <p>{{ post.summary|slice(0, 150) ~ ' ...' }}</p>#}
-
             <p class="well">
                 <a href="{{ path('blog_post', {slug: post.slug}) }}" title="{{ post.title }}">
                     <strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong>
@@ -104,6 +96,11 @@
 
     {{ render_esi(controller('App\\Controller\\CategoryController::showCategories', {
         'template': 'blog/categories.html.twig',
+        '_locale': app.request.locale
+    })) }}
+
+    {{ render_esi(controller('App\\Controller\\ContactController::showContactInfo', {
+        'template': 'blog/contact-bloc.html.twig',
         '_locale': app.request.locale
     })) }}
 

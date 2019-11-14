@@ -3,9 +3,7 @@
         {% if categories is defined %}
         <ul class="cat-menu">
             {% for category in categories %}
-
                 <li>
-{#                    <i class="fa sort-down" aria-hidden="true"></i>#}
                     <a href="{{ path('homepage',{'get[category]': category['cat'].id, 'get[subcategory]': 0}) }}" title="{{ category['cat'].name }}">{{ category['cat'].name }}</a>
                 </li>
 
@@ -16,53 +14,8 @@
                         </li>
                     {% endfor %}
                 </ul>
-
             {% endfor %}
         </ul>
         {% endif %}
-
-
-{#        <form action="{{ path('homepage') }}" method="get">#}
-{#            <div class="category">#}
-{#                <label class="control-label">Category</label>#}
-{#                <select class="form-control" name="get[category]">#}
-{#                    <option value="0">Select</option>#}
-
-{#                    {% for category in categories %}#}
-
-{#                        {% set selected = '' %}#}
-{#                        {% if categoryId == category.id %}#}
-{#                            {% set selected = 'selected' %}#}
-{#                        {% endif %}#}
-
-{#                        <option value="{{category.id}}" {{ selected }}>{{ category.name }}</option>#}
-{#                    {% endfor %}#}
-{#                </select>#}
-{#            </div>#}
-
-{#            <div class="subcategory">#}
-{#                <label class="control-label">Sub category</label>#}
-{#                <select class="form-control" name="get[subcategory]">#}
-{#                    <option value="0">Select</option>#}
-{#                    {% for subcategory in subcategories %}#}
-
-{#                        {% set selected = '' %}#}
-{#                        {% if subcategoryId == subcategory.id %}#}
-{#                            {% set selected = 'selected' %}#}
-{#                        {% endif %}#}
-
-{#                        <option value="{{subcategory.id}}" {{ selected }}>{{ subcategory.name }}</option>#}
-{#                    {% endfor %}#}
-{#                </select>#}
-{#            </div>#}
-{#            <br/>#}
-{#            <button type="submit" class="btn btn-primary">Search</button>#}
-
-{#        </form>#}
     </div>
 </div>
-
-{# it's not mandatory to set the timezone in localizeddate(). This is done to
-   avoid errors when the 'intl' PHP extension is not available and the application
-   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
-<!-- Fragment rendered on {{ 'now'|localizeddate('long', 'long', null, 'UTC') }} -->

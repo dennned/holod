@@ -40,10 +40,6 @@ class PostType extends AbstractType
                 'attr' => ['autofocus' => true],
                 'label' => 'label.title',
             ])
-            ->add('summary', TextareaType::class, [
-                'help' => 'help.post_summary',
-                'label' => 'label.summary',
-            ])
             ->add('content', null, [
                 'attr' => ['rows' => 10],
                 'help' => 'help.post_content',
