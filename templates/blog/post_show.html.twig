@@ -17,6 +17,12 @@
         <p class="m-b-0"><strong>{{ 'label.price'|trans }}: {{ post.price }} грн</strong></p>
     </div>
 
+    <div class="section actions">
+        <a href="{{ path('blog_index') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> {{ 'action.back'|trans }}
+        </a>
+    </div>
+
 {% endblock %}
 
 {% block sidebar %}
