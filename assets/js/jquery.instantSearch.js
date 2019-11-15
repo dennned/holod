@@ -33,10 +33,6 @@
         itemTemplate: '\
                 <article class="post">\
                     <h2><a href="{{ url }}">{{ title }}</a></h2>\
-                    <p class="post-metadata">\
-                       <span class="metadata"><i class="fa fa-calendar"></i> {{ date }}</span>\
-                       <span class="metadata"><i class="fa fa-user"></i> {{ author }}</span>\
-                    </p>\
                 </article>'
     };
 

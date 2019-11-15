@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-front.html.twig' %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -25,7 +25,13 @@
 {% endblock %}
 
 {% block sidebar %}
-    {{ parent() }}
+    {{ render_esi(controller('App\\Controller\\CategoryController::showCategories', {
+        'template': 'blog/categories.html.twig',
+        '_locale': app.request.locale
+    })) }}
 
-    {{ show_source_code(_self) }}
+    {{ render_esi(controller('App\\Controller\\ContactController::showContactInfo', {
+        'template': 'blog/contact-bloc.html.twig',
+        '_locale': app.request.locale
+    })) }}
 {% endblock %}
