@@ -20,6 +20,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
  */
 class Paginator
 {
+    // limit pagination
     private const PAGE_SIZE = 12;
     private $queryBuilder;
     private $currentPage;
