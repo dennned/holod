@@ -97,6 +97,34 @@ header .locales a:hover small {
   color: inherit;
 }
 
+/* navbar start */
+.nav {
+  padding: 5px 0 0 0;
+}
+
+.navbar-brand {
+  padding: 7.5px 15px;
+}
+
+.navbar {
+  min-height: 75px;
+}
+
+.navbar-toggle {
+  margin-top: 19px;
+}
+
+.navbar-default {
+  background-color: #18BC9C;
+}
+
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus {
+  color: #212529;
+}
+
+/* navbar end */
+
 .body-container {
   flex: 1;
   /* needed to prevent pages with a very small height and browsers not supporting flex */
@@ -104,7 +132,8 @@ header .locales a:hover small {
 }
 
 .body-container #main h1, .body-container #main h2 {
-  margin-top: 0
+  margin-top: 0;
+  min-height:72px;
 }
 
 #sidebar .section {
@@ -470,7 +499,7 @@ body#blog_post_show {
       width: 95%;
     }
     body#blog_index article.post {
-      height: 300px;
+      height: 330px;
     }
 }
 
