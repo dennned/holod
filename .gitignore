@@ -5,8 +5,9 @@
 /.env.local
 /.env.*.local
 /public/bundles/
-/public/build/
+#/public/build/
 /public/uploads/
+/public/media/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -33,8 +34,8 @@ yarn-error.log
 
 /.idea/
 /src/Migrations
-/public/build1/
+
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+#/public/media/cache/
 ###< liip/imagine-bundle ###
