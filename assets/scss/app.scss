@@ -383,7 +383,7 @@ body#admin_post_edit .size-image img {
   clear: both;
 }
 
-.fa-trash {
+.images .fa-trash {
   color: red;
   font-size: 18px;
   padding: 0 0 0 7px;
@@ -391,6 +391,10 @@ body#admin_post_edit .size-image img {
 }
 
 .images div {
+  padding: 0 0 5px 0;
+}
+
+.admin-slider-show img {
   padding: 0 0 5px 0;
 }
 
