@@ -19,9 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ImagesController extends AbstractController
 {
-
-    const PATH_FOLDER = '../../public/media/cache/post_admin/uploads/images';
-
     /**
      * @var ImagesRepository
      */
@@ -41,7 +38,6 @@ class ImagesController extends AbstractController
         $this->imagesRepository = $imagesRepository;
         $this->fileUploader = $fileUploader;
     }
-
 
     /**
      * AJAX return

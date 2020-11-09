@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Images;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method Images|null find($id, $lockMode = null, $lockVersion = null)
