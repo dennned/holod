@@ -39,7 +39,7 @@
 
         {% if form.vars.value.images %}
             <div class="form-group size-image images">
-                {% for img in form.vars.value.images  %}
+                {% for img in form.vars.value.images %}
                     <div class="col-sm-6">
                         <img src="{{asset('/uploads/images/' ~ img.name) | imagine_filter('post_admin')}}" title="{{form.vars.value.title}}" alt="{{form.vars.value.title}}" />
                         <i class="fa fa-trash post_delete_images" aria-hidden="true" date-locale="{{ app.request.locale }}" data="{{ '/admin/post/delete/images/' ~ img.id }}"></i>

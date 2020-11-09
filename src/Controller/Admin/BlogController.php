@@ -86,6 +86,8 @@ class BlogController extends AbstractController
         $post = new Post();
         $post->setAuthor($this->getUser());
 
+        $date = new \DateTime();
+
         // See https://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(PostType::class, $post)
             ->add('saveAndCreateNew', SubmitType::class);
@@ -110,6 +112,29 @@ class BlogController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
+            if ($request->files->get('post')['images']) {
+                $images = $request->files->get('post')['images'];
+                
+                foreach($images as $img) {
+                    // upload to folder
+                    $fileName = $date->format('Y-m-d') . '-' . md5(uniqid());
+                    $newFilename = $fileUploader->upload($img, $fileName);
+
+                    if ($newFilename !== '') {
+                        //create images 
+                        $newImage = new Images();
+                        $newImage->addPost($post);
+                        $newImage->setName($newFilename); 
+                        
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($newImage);
+                        $em->flush();
+
+                        $post->addImage($newImage);
+                    }
+                }
+            }
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon

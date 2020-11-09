@@ -11,6 +11,17 @@
         </div>
     {% endif %}
 
+    {% if post.images|length > 0 %}
+        <div class="form-group size-image admin-slider-show">
+            {% for img in post.images %}
+                <div class="col-sm-4">
+                    <img src="{{asset('/uploads/images/' ~ img.name)}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                </div>
+            {% endfor %}
+        </div>
+        <div class="clear"></div>
+    {% endif %}
+
     {{ post.content|md2html }}
 
     <div class="form-group">
