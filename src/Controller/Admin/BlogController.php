@@ -13,6 +13,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Contact;
 use App\Entity\Post;
+use App\Entity\Images;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Service\FileUploader;
@@ -167,6 +168,8 @@ class BlogController extends AbstractController
      */
     public function edit(Request $request, Post $post, FileUploader $fileUploader): Response
     {
+        $date = new \DateTime();
+        
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -178,7 +181,8 @@ class BlogController extends AbstractController
 
             if($image) {
                 //upload image
-                $newFilename = $fileUploader->upload($image);
+                $fileName = $date->format('Y-m-d') . '-' . md5(uniqid());
+                $newFilename = $fileUploader->upload($image, $fileName);
 
                 // delete old image
                 if(null !== $post->getImageName()){
@@ -186,6 +190,29 @@ class BlogController extends AbstractController
                 }
 
                 $post->setImageName($newFilename);
+            }
+
+            if ($request->files->get('post')['images']) {
+                $images = $request->files->get('post')['images'];
+                
+                foreach($images as $img) {
+                    // upload to folder
+                    $fileName = $date->format('Y-m-d') . '-' . md5(uniqid());
+                    $newFilename = $fileUploader->upload($img, $fileName);
+
+                    if ($newFilename !== '') {
+                        //create images 
+                        $newImage = new Images();
+                        $newImage->addPost($post);
+                        $newImage->setName($newFilename); 
+                        
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($newImage);
+                        $em->flush();
+
+                        $post->addImage($newImage);
+                    }
+                }
             }
 
             $this->getDoctrine()->getManager()->flush();

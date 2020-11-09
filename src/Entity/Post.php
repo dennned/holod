@@ -138,12 +138,18 @@ class Post
      */
     private $imageName;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Images::class, mappedBy="post")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->price = 0;
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -280,5 +286,32 @@ class Post
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->addPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            $image->removePost($this);
+        }
+
+        return $this;
     }
 }

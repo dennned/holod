@@ -10,3 +10,7 @@ liip_imagine:
       quality: 75
       filters:
         thumbnail: { size: [500, 320], mode: outbound }
+    post_admin:
+      quality: 95
+      filters:
+        thumbnail: { size: [50, 32], mode: outbound }

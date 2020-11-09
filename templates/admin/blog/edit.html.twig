@@ -26,16 +26,33 @@
         {{ form_row(form.category) }}
         {{ form_row(form.subcategory) }}
 
+        {% if form.vars.value.imageName %}
+            <div class="form-group size-image">
+                <img src="{{asset('/uploads/images/' ~ form.vars.value.imageName)}}" title="{{form.vars.value.title}}" alt="{{form.vars.value.title}}" />
+            </div>
+        {% endif %}
+
         <div class="form-group size-image">
             <label class="control-label" for="post_image">{{ 'label.upload.image'|trans }}</label>
             {{ form_widget(form.image, {'required':false}) }}
         </div>
 
-        {% if form.vars.value.imageName %}
-            <div class="form-group size-image">
-                <img src="{{asset('/uploads/images/' ~ form.vars.value.imageName)}}" title="form.vars.value.title" alt="form.vars.value.title" />
+        {% if form.vars.value.images %}
+            <div class="form-group size-image images">
+                {% for img in form.vars.value.images  %}
+                    <div class="col-sm-6">
+                        <img src="{{asset('/uploads/images/' ~ img.name) | imagine_filter('post_admin')}}" title="{{form.vars.value.title}}" alt="{{form.vars.value.title}}" />
+                        <i class="fa fa-trash post_delete_images" aria-hidden="true" date-locale="{{ app.request.locale }}" data="{{ '/admin/post/delete/images/' ~ img.id }}"></i>
+                    </div>
+                {% endfor %}
             </div>
+            <div class="clear"></div>
         {% endif %}
+
+        <div class="form-group size-image">
+            <label class="control-label" for="post_image">{{ 'label.upload.images'|trans }}</label>
+            {{ form_widget(form.images, {'required':false}) }}
+        </div>
 
         <div class="form-group">
             <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
@@ -54,7 +71,8 @@
         var post_category = jQuery('#post_category');
         var htmlSubCat = '<option value="">{{ 'label.select.subcategory'|trans }}</option>';
         var path = 'subcat/'+post_category.val();
-
+        var delete_images = jQuery('.post_delete_images');
+        
         post_category.on('change',function(){
             var path = 'subcat/'+post_category.val();
             if(post_category.val().length != 0) {
@@ -77,6 +95,32 @@
                 jQuery("#post_subcategory").html(htmlSubCat);
             });
         }
+
+         // delete images
+        delete_images.on('click',function(){
+            var current = this;
+            var path = this.getAttribute('data');
+            var locale = this.getAttribute('date-locale');
+            path = '/'+locale+path;
+
+            if(path.length != 0) {
+                deleteImages(path, current);
+            }
+        });
+
+        /**
+         * call ajax delete images
+         * @param path
+         * @param current
+         */
+        function deleteImages(path, current) {
+            jQuery.ajax(path).then(function (response) {
+                if(response.status === true){
+                    jQuery(current).parent().hide();
+                }
+            });
+        }
+
     </script>
 
 {% endblock %}

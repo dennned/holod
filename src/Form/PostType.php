@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\Subcategory;
+use App\Entity\Images;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -77,6 +78,11 @@ class PostType extends AbstractType
                         'mimeTypesMessage' => 'post.format_image',
                     ])
                 ],
+            ])
+            ->add('images', FileType::class, [
+                'label' => 'label.upload.images',
+                'multiple' => true,
+                'mapped' => false
             ])
         ;
     }

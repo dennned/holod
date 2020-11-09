@@ -39,6 +39,21 @@ body#admin_post_index img.image-list {
   width: 50px;
 }
 
+.clear {
+  clear: both;
+}
+
+.fa-trash {
+  color: red;
+  font-size: 18px;
+  padding: 0 0 0 7px;
+  cursor: pointer;
+}
+
+.images div {
+  padding: 0 0 5px 0;
+}
+
 @media screen and (max-width: 600px) {
   body#admin_post_index span.hide-mobile,
   body#admin_category_index span.hide-mobile{

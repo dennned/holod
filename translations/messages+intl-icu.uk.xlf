@@ -288,7 +288,11 @@
             </trans-unit>
             <trans-unit id="label.upload.image">
                 <source>label.upload.image</source>
-                <target>Загрузити картинку</target>
+                <target>Загрузити картинку - Головна (jpeg)</target>
+            </trans-unit>
+            <trans-unit id="label.upload.images">
+                <source>label.upload.images</source>
+                <target>Загрузить картинки - Додатково (jpeg)</target>
             </trans-unit>
             <trans-unit id="label.image">
                 <source>label.image</source>

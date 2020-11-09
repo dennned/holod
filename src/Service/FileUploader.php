@@ -12,21 +12,27 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileUploader
 {
     private $targetDirectory;
+    private $targetCacheDirectory;
 
-    public function __construct($targetDirectory)
+    public function __construct($targetDirectory, $targetCacheDirectory)
     {
         $this->targetDirectory = $targetDirectory;
+        $this->targetCacheDirectory = $targetCacheDirectory;
     }
 
     /**
      * @param UploadedFile $file
+     * @param string $filename
      * @return string
      * @throws \Exception
      */
-    public function upload(UploadedFile $file): string
+    public function upload(UploadedFile $file, string $filename = ''): string
     {
-        $date = new \DateTime();
-        $newFilename = $date->format('Y-m-d') . '-' . md5(uniqid()) . '.' . $file->guessExtension();
+        if ($file->guessExtension() !== "jpeg") {
+            return '';
+        }
+
+        $newFilename = $filename . '.' . $file->guessExtension();
 
         try {
             $file->move(
@@ -43,10 +49,15 @@ class FileUploader
     /**
      * @param string $imageName
      */
-    public function delete(string $imageName = '')
+    public function delete(string $imageName = '', string $mode = '')
     {
-        $image = $this->getTargetDirectory() . '/' . $imageName;
+        $pathFolder = $this->getTargetDirectory();
+        if ($mode === 'cache') {
+            $pathFolder =  $this->getTargetCacheDirectory();
+        }
 
+        $image = $pathFolder. '/' . $imageName;
+        
         if (file_exists($image)) {
             unlink($image);
         }
@@ -58,5 +69,13 @@ class FileUploader
     public function getTargetDirectory()
     {
         return $this->targetDirectory;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTargetCacheDirectory()
+    {
+        return $this->targetCacheDirectory;
     }
 }

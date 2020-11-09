@@ -6,6 +6,7 @@ parameters:
     app_locales: ru|uk
     app.notifications.email_sender: anonymous@example.com
     image_directory: '%kernel.project_dir%/public/uploads/images'
+    image_cache_directory: '%kernel.project_dir%/public/media/cache/post_admin/uploads/images'
 
 services:
     # default configuration for services in *this* file
@@ -38,3 +39,4 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%image_directory%'
+            $targetCacheDirectory: '%image_cache_directory%'
