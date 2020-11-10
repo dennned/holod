@@ -330,7 +330,7 @@
             </trans-unit>
             <trans-unit id="label.upload.images">
                 <source>label.upload.images</source>
-                <target>Загрузить картинки - Дополнительно (jpeg)</target>
+                <target>Загрузить картинки (3 max) - Дополнительно (jpeg)</target>
             </trans-unit>
             <trans-unit id="label.image">
                 <source>label.image</source>
