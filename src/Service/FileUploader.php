@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class FileUploader
 {
+    const FORMAT_IMAGES = "jpeg";
+
     private $targetDirectory;
     private $targetCacheDirectory;
 
@@ -28,7 +30,7 @@ class FileUploader
      */
     public function upload(UploadedFile $file, string $filename = ''): string
     {
-        if ($file->guessExtension() !== "jpeg") {
+        if ($file->guessExtension() !== self::FORMAT_IMAGES) {
             return '';
         }
 

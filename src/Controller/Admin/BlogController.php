@@ -43,6 +43,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BlogController extends AbstractController
 {
+    const LIMIT_UPLOAD_IMAGES = 3;
     /**
      * Lists all Post entities.
      *
@@ -115,6 +116,11 @@ class BlogController extends AbstractController
 
             if ($request->files->get('post')['images']) {
                 $images = $request->files->get('post')['images'];
+
+                // upload limit
+                if(count($images) > self::LIMIT_UPLOAD_IMAGES) {
+                    $images = array_slice($images, 0, 3);
+                }
                 
                 foreach($images as $img) {
                     // upload to folder
@@ -219,23 +225,31 @@ class BlogController extends AbstractController
 
             if ($request->files->get('post')['images']) {
                 $images = $request->files->get('post')['images'];
-                
-                foreach($images as $img) {
-                    // upload to folder
-                    $fileName = $date->format('Y-m-d') . '-' . md5(uniqid());
-                    $newFilename = $fileUploader->upload($img, $fileName);
 
-                    if ($newFilename !== '') {
-                        //create images 
-                        $newImage = new Images();
-                        $newImage->addPost($post);
-                        $newImage->setName($newFilename); 
-                        
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($newImage);
-                        $em->flush();
+                if (count($post->getImages()) < self::LIMIT_UPLOAD_IMAGES) {
+                    $currentLimit = self::LIMIT_UPLOAD_IMAGES - count($post->getImages());
 
-                        $post->addImage($newImage);
+                    if(count($images) > $currentLimit) {
+                        $images = array_slice($images, 0, $currentLimit);
+                    }
+
+                    foreach($images as $img) {
+                        // upload to folder
+                        $fileName = $date->format('Y-m-d') . '-' . md5(uniqid());
+                        $newFilename = $fileUploader->upload($img, $fileName);
+    
+                        if ($newFilename !== '') {
+                            //create images 
+                            $newImage = new Images();
+                            $newImage->addPost($post);
+                            $newImage->setName($newFilename); 
+                            
+                            $em = $this->getDoctrine()->getManager();
+                            $em->persist($newImage);
+                            $em->flush();
+    
+                            $post->addImage($newImage);
+                        }
                     }
                 }
             }
