@@ -5,22 +5,31 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
-    {% if post.imageName %}
-        <div class="form-group size-image">
-            <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="{{ post.title }}" alt="{{ post.title }}" />
-        </div>
-    {% endif %}
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel">
+            <ul>
+                {% if post.imageName %}
+                    <li>
+                        <img src="{{asset('/uploads/images/' ~ post.imageName)}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                    </li>
+                {% endif %}
 
-    {% if post.images|length > 0 %}
-        <div class="form-group size-image admin-slider-show">
-            {% for img in post.images %}
-                <div class="col-sm-4">
-                    <img src="{{asset('/uploads/images/' ~ img.name)}}" title="{{ post.title }}" alt="{{ post.title }}" />
-                </div>
-            {% endfor %}
+                {% if post.images|length > 0 %}
+                    {% for img in post.images %}
+                        <li>
+                            <img src="{{asset('/uploads/images/' ~ img.name)}}" title="{{ post.title }}" alt="{{ post.title }}" />
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
         </div>
+
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+        <p class="jcarousel-pagination"></p>
         <div class="clear"></div>
-    {% endif %}
+    </div>
 
     {{ post.content|md2html }}
 
@@ -46,4 +55,10 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i> {{ 'action.back'|trans }}
         </a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('jcarousel') }}
+    {{ encore_entry_script_tags('jcarousel_conf') }}
 {% endblock %}

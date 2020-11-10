@@ -24,6 +24,8 @@ Encore
     .addEntry('login', './assets/js/login.js')
     .addEntry('admin', './assets/js/admin.js')
     .addEntry('search', './assets/js/search.js')
+    .addEntry('jcarousel', './assets/js/jquery.jcarousel.min.js')
+    .addEntry('jcarousel_conf','./assets/js/jcarousel.responsive.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .enableIntegrityHashes(Encore.isProduction())

@@ -7,9 +7,14 @@ liip_imagine:
       filters :
         thumbnail  : { size : [260, 190], mode : outbound }
     post_show:
-      quality: 75
+      quality: 80
       filters:
-        thumbnail: { size: [500, 320], mode: outbound }
+        thumbnail: { size: [700, 400], mode: outbound }
+    post_show_fixed:
+      filters:
+        fixed:
+          width: 800
+          height: 550 
     post_admin:
       quality: 95
       filters:
